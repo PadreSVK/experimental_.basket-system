@@ -1,0 +1,28 @@
+# Kubernetes namespace for basket system
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: basket-k8s-namespace
+  namespace: experiments
+  title: Basket Kubernetes Namespace
+  description: Kubernetes namespace for basket system components
+spec:
+  type: k8s-namespace
+  lifecycle: production
+  owner: group:experiments/team-bravo
+  system: system:experiments/basket
+  namespaceName: basket
+  environments:
+    - name: development
+      continuous-deployment-enabled: true 
+    - name: staging
+      continuous-deployment-enabled: true 
+    - name: production
+      continuous-deployment-enabled: false 
+  dependsOn:
+    - resource:experiments/k8s-cluster-development
+    - resource:experiments/k8s-cluster-staging
+    - resource:experiments/k8s-cluster-production
+
+# For other k8s resources we could use automatic ingestor
+# See https://www.npmjs.com/package/@vrabbi/backstage-plugin-kubernetes-ingestor

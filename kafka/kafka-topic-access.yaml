@@ -1,0 +1,61 @@
+# Kafka topic access resources for basket system
+# Generated via Scaffolder when services request Kafka access
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: kafka-access-basket-dotnet-api-development
+  namespace: experiments
+  title: Kafka Access - Basket .NET API - Development
+  description: Kafka topic access for basket .NET API in development environment
+spec:
+  type: kafka-topic-access
+  lifecycle: development
+  owner: group:experiments/team-bravo
+  system: system:experiments/basket
+  provideAccess: component:experiments/dotnet-api-basket
+  dependencyOf:
+    - component:experiments/dotnet-api-basket
+  dependsOn:
+    - resource:experiments/kafka-topic-basket
+  environment: "development"
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: kafka-access-basket-dotnet-api-staging
+  namespace: experiments
+  title: Kafka Access - Basket .NET API - Staging
+  description: Kafka topic access for basket .NET API in staging environment
+spec:
+  type: kafka-topic-access
+  lifecycle: staging
+  owner: group:experiments/team-bravo
+  system: system:experiments/basket
+  provideAccess: component:experiments/dotnet-api-basket
+  dependencyOf:
+    - component:experiments/dotnet-api-basket
+  dependsOn:
+    - resource:experiments/kafka-topic-basket
+  environment: "staging"
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: kafka-access-basket-dotnet-api-production
+  namespace: experiments
+  title: Kafka Access - Basket .NET API - Production
+  description: Kafka topic access for basket .NET API in production environment
+spec:
+  type: kafka-topic-access
+  lifecycle: production
+  owner: group:experiments/team-bravo
+  system: system:experiments/basket
+  provideAccess: component:experiments/dotnet-api-basket
+  dependencyOf:
+    - component:experiments/dotnet-api-basket
+  dependsOn:
+    - resource:experiments/kafka-topic-basket
+  environment: "production"

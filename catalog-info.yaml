@@ -1,0 +1,203 @@
+# Based on this automation will create GitHub repositories with the given configuration.
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: experimental_basket-mobile
+  namespace: experiments
+  description: Git repository for basket mobile application components
+spec:
+  type: github-repository
+  owner: group:experiments/team-bravo
+  lifecycle: production
+  system: system:experiments/basket
+  repositoryConfig:
+    general:
+      issuesEnabled: true
+      projectsEnabled: true
+      wikiEnabled: true
+      discussionsEnabled: true
+    topics:
+      - backstage-include
+      - mobile-app
+    pr: 
+      allowMergeCommits: true
+      allowSquashMerging: true
+      allowRebaseMerging: true
+      alwaysSuggestUpdatingPullRequestBranch: true
+      allowAutoMerge: true
+      automaticallyDeleteHeadBranches: true
+    rulesets:
+      - name: Copilot
+        enforcementStatus: active
+        targets:
+          - pattern: main
+          - pattern: v1beta
+        rules:
+          - name: restrict-creations
+            enabled: true
+          - name: restrict-updates
+            enabled: true
+          - name: restrict-deletions
+            enabled: true
+          - name: require-linear-history
+            enabled: true
+          - name: block-force-pushes
+            enabled: true
+          - name: require-pull-request-before-merging
+            enabled: true
+            required_approving_review_count: 2
+            require_code_owner_reviews: true
+            required_approval_of_the_most_recent_reviewable_push: true
+            allowed_merge_methods:
+              - Merge
+              - Squash
+              - Rebase
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: experimental_basket-backend
+  namespace: experiments
+  description: Git repository for basket backend API components
+spec:
+  type: github-repository
+  owner: group:experiments/team-bravo
+  lifecycle: production
+  system: system:experiments/basket
+  repositoryConfig:
+    general:
+      issuesEnabled: true
+      projectsEnabled: true
+      wikiEnabled: true
+      discussionsEnabled: true
+    topics:
+      - backstage-include
+      - dotnet-api
+    pr: 
+      allowMergeCommits: true
+      allowSquashMerging: true
+      allowRebaseMerging: true
+      alwaysSuggestUpdatingPullRequestBranch: true
+      allowAutoMerge: true
+      automaticallyDeleteHeadBranches: true
+    rulesets:
+      - name: Copilot
+        enforcementStatus: active
+        targets:
+          - pattern: main
+          - pattern: v1beta
+        rules:
+          - name: restrict-creations
+            enabled: true
+          - name: restrict-updates
+            enabled: true
+          - name: restrict-deletions
+            enabled: true
+          - name: require-linear-history
+            enabled: true
+          - name: block-force-pushes
+            enabled: true
+          - name: require-pull-request-before-merging
+            enabled: true
+            required_approving_review_count: 2
+            require_code_owner_reviews: true
+            required_approval_of_the_most_recent_reviewable_push: true
+            allowed_merge_methods:
+              - Merge
+              - Squash
+              - Rebase
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: experimental_basket-react-component
+  namespace: experiments
+  description: Git repository for basket React component library
+spec:
+  type: github-repository
+  owner: group:experiments/team-bravo
+  lifecycle: production
+  system: system:experiments/basket
+  repositoryConfig:
+    general:
+      issuesEnabled: true
+      projectsEnabled: true
+      wikiEnabled: true
+      discussionsEnabled: true
+    topics:
+      - backstage-include
+      - react-component
+      - npm-package
+    pr: 
+      allowMergeCommits: true
+      allowSquashMerging: true
+      allowRebaseMerging: true
+      alwaysSuggestUpdatingPullRequestBranch: true
+      allowAutoMerge: true
+      automaticallyDeleteHeadBranches: true
+    rulesets:
+      - name: Copilot
+        enforcementStatus: active
+        targets:
+          - pattern: main
+          - pattern: v1beta
+        rules:
+          - name: restrict-creations
+            enabled: true
+          - name: restrict-updates
+            enabled: true
+          - name: restrict-deletions
+            enabled: true
+          - name: require-linear-history
+            enabled: true
+          - name: block-force-pushes
+            enabled: true
+          - name: require-pull-request-before-merging
+            enabled: true
+            required_approving_review_count: 2
+            require_code_owner_reviews: true
+            required_approval_of_the_most_recent_reviewable_push: true
+            allowed_merge_methods:
+              - Merge
+              - Squash
+              - Rebase
+
+---
+# Kafka topic for basket events
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: kafka-topic-basket
+  namespace: experiments
+  title: Basket Kafka Topic
+  description: Kafka topic for basket events and updates
+spec:
+  type: kafka-topic
+  lifecycle: production
+  owner: group:experiments/team-bravo
+  system: system:experiments/basket
+  dependsOn:
+    - resource:experiments/kafka-production-cluster
+
+---
+# Location references for organized resources
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: basket-kafka-resources
+  description: Kafka access resources for the basket system
+spec:
+  targets:
+    - ./kafka/*.yaml
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: basket-kubernetes-resources
+  description: Kubernetes resources for the basket system
+spec:
+  targets:
+    - ./kubernetes/*.yaml
