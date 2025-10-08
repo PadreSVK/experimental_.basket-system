@@ -14,8 +14,6 @@ spec:
   owner: group:experiments/team-bravo
   system: system:experiments/basket
   provideAccess: component:experiments/dotnet-api-basket
-  dependencyOf:
-    - component:experiments/dotnet-api-basket
   dependsOn:
     - resource:experiments/kafka-topic-basket
   environment: "development"
@@ -34,8 +32,6 @@ spec:
   owner: group:experiments/team-bravo
   system: system:experiments/basket
   provideAccess: component:experiments/dotnet-api-basket
-  dependencyOf:
-    - component:experiments/dotnet-api-basket
   dependsOn:
     - resource:experiments/kafka-topic-basket
   environment: "staging"
@@ -54,8 +50,6 @@ spec:
   owner: group:experiments/team-bravo
   system: system:experiments/basket
   provideAccess: component:experiments/dotnet-api-basket
-  dependencyOf:
-    - component:experiments/dotnet-api-basket
   dependsOn:
     - resource:experiments/kafka-topic-basket
   environment: "production"
