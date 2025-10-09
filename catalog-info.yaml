@@ -187,7 +187,6 @@ apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
   name: basket-kafka-resources
-  namespace: experiments
   description: Kafka access resources for the basket system
 spec:
   targets:
@@ -198,7 +197,6 @@ apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
   name: basket-kubernetes-resources
-  namespace: experiments
   description: Kubernetes resources for the basket system
 spec:
   targets:
