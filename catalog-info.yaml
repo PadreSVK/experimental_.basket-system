@@ -5,6 +5,8 @@ metadata:
   name: experimental_basket-mobile
   namespace: experiments
   description: Git repository for basket mobile application components
+  annotations:
+    backstage.io/source-location: url:https://github.com/PadreSVK/experimental_basket-mobile/tree/HEAD/
 spec:
   type: github-repository
   owner: group:experiments/team-bravo
